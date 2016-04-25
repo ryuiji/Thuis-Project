@@ -12,6 +12,7 @@ public class Moving : MonoBehaviour {
 
     public RaycastHit hit;
     private float rayDis = 10f;
+    
 
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,7 +48,7 @@ public class Moving : MonoBehaviour {
 
     void ButtonInput() {
         if (Input.GetButtonDown("Use")) {
-            if (Physics.Raycast(Camera.main.transform.position, transform.forward, out hit, rayDis)) {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, rayDis)) {
                 CanInteract(hit);
             }
         }
