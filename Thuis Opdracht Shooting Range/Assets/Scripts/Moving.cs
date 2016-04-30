@@ -49,22 +49,7 @@ public class Moving : MonoBehaviour {
     void ButtonInput() {
         if (Input.GetButtonDown("Use")) {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, rayDis)) {
-                CanInteract(hit);
-            }
-        }
-    }
-    void CanInteract(RaycastHit hit) {
-        if(hit.transform.tag == "Gun") {
-            switch (hit.transform.GetComponent<GunEnum>().weapons) {
-                case GunEnum.Weapons.Pistol:
-                    print("pistol");
-                    break;
-                case GunEnum.Weapons.AK:
-                    print("AK");
-                    break;
-                case GunEnum.Weapons.M4A1:
-                    print("M4A1");
-                    break;
+                GetComponent<Interact>().CanInteract(hit);
             }
         }
     }
