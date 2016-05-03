@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Interact : MonoBehaviour {
 
+    public GameObject weaponLoc;
+    public Transform playerCam;
+
     public void CanInteract(RaycastHit hit) {
         if (hit.transform.tag == "Gun") {
             switch (hit.transform.GetComponent<GunEnum>().weapons) {
@@ -16,6 +19,9 @@ public class Interact : MonoBehaviour {
                     print("M4A1");
                     break;
             }
+            GetComponent<WeaponHold>().AddWeapon(hit);
+            hit.transform.gameObject.SetActive(false);
+            //hit.transform.SetParent(playerCam);
         }
     }
 }

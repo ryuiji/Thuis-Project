@@ -6,6 +6,7 @@ public class Moving : MonoBehaviour {
     public float moveSpeed;
     public float walkSpeed = 5;
     public float runSpeed = 10;
+
     public float yRot;
     public float xRot;
     public float sens = 2.5f;
