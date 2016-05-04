@@ -21,7 +21,6 @@ public class Interact : MonoBehaviour {
             }
             GetComponent<WeaponHold>().AddWeapon(hit);
             hit.transform.gameObject.SetActive(false);
-            //hit.transform.SetParent(playerCam);
         }
     }
 }

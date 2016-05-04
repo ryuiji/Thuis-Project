@@ -59,7 +59,7 @@ public class WeaponHold : MonoBehaviour {
         }
     }
     void ReloadInput() {
-        if (Input.GetButtonDown("R") && reload != null) {
+        if (Input.GetButtonDown("Reload") && reload != null) {
             reload();
         }
     }

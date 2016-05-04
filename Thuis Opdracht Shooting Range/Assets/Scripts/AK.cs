@@ -12,16 +12,25 @@ public class AK : GunClass {
     }
     public void OnEnable() {
         weaponHold.pass = PassDelegates;
-        
     }
 
     public override void Shooting () {
-        curAmmo--;
+        if (curAmmo > 0) {
+            curAmmo --;
+        }
         AmmoText();
-	}
+    }
 	
 	public override void Reload () {
-        print("reloaded AK");
+        if (curAmmo < ammoSize) {
+            ammoToReload = ammoSize -= curAmmo;
+            maxAmmo -= ammoToReload;
+            curAmmo += ammoToReload;
+            ammoToReload = 0;
+            ammoSize = curAmmo;
+        }
+        AmmoText();
+        
 	}
     public override void AmmoText() {
         ammoText.text = "AK ammo:" + curAmmo.ToString() + "/" + maxAmmo.ToString();
