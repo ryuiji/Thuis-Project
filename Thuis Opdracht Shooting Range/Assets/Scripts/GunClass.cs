@@ -7,12 +7,11 @@ public abstract class GunClass : MonoBehaviour {
     public string gunName;
     public float fireRate;
     public float curAmmo;
-    public float ammoSize;
     public float maxAmmo;
+    public float leftoverAmmo;
     public float ammoToReload;
     public GameObject bullet;
-    public bool isReloading;
-    public bool mayFire = true;
+    public float bulletSpeed;
     public WeaponHold weaponHold;
     public Text ammoText;
 

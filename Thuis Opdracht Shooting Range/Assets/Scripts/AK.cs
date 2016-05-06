@@ -15,24 +15,42 @@ public class AK : GunClass {
     }
 
     public override void Shooting () {
-        if (curAmmo > 0) {
-            curAmmo --;
+        if (Input.GetButton("Fire1") && curAmmo > 0) {
+            StartCoroutine(WaitForShooting(fireRate));
+        } else {
+            if (Input.GetButtonUp("Fire1") || curAmmo <= 0) {
+                StopCoroutine(WaitForShooting(fireRate));
+            }
         }
         AmmoText();
     }
+    IEnumerator WaitForShooting(float waitTime) {
+        Rigidbody bulletShot = bullet.GetComponent<Rigidbody>();
+        Rigidbody newBulletShot = Instantiate(bulletShot, weaponHold.weaponLoc.transform.position, weaponHold.weaponLoc.transform.rotation) as Rigidbody;
+        newBulletShot.velocity = transform.TransformDirection(new Vector3(transform.position.x, transform.position.y, bulletSpeed));
+        curAmmo--;
+        yield return new WaitForSeconds(waitTime);
+        Shooting();
+        
+    }
 	
 	public override void Reload () {
-        if (curAmmo < ammoSize) {
-            ammoToReload = ammoSize -= curAmmo;
-            maxAmmo -= ammoToReload;
-            curAmmo += ammoToReload;
+        if (curAmmo < maxAmmo && leftoverAmmo > 0) {
+            ammoToReload = maxAmmo - curAmmo;
+            if (ammoToReload <= leftoverAmmo) {
+                leftoverAmmo -= ammoToReload;
+                curAmmo += ammoToReload;
+            } else {
+                curAmmo += leftoverAmmo;
+                leftoverAmmo = 0;
+
+            }
             ammoToReload = 0;
-            ammoSize = curAmmo;
         }
         AmmoText();
         
 	}
     public override void AmmoText() {
-        ammoText.text = "AK ammo:" + curAmmo.ToString() + "/" + maxAmmo.ToString();
+        ammoText.text = "AK ammo:" + curAmmo.ToString() + "/" + leftoverAmmo.ToString();
     }
 }

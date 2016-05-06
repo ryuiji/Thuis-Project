@@ -40,7 +40,6 @@ public class Moving : MonoBehaviour {
     }
     void Sprint() {
         if (Input.GetButton("sprint")) {
-            print("work2");
             moveSpeed = runSpeed;
         } else {
             moveSpeed = walkSpeed;

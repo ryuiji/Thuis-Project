@@ -54,7 +54,7 @@ public class WeaponHold : MonoBehaviour {
         pass();
     }
     void ShootInput() {
-        if (Input.GetButton("Fire1") && shoot != null) {
+        if (Input.GetButtonDown("Fire1") && shoot != null) {
             shoot();
         }
     }
@@ -64,6 +64,5 @@ public class WeaponHold : MonoBehaviour {
         }
     }
     void AmmoTextChange() {
-        
     }
 }

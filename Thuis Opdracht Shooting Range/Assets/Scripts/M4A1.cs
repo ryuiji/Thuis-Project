@@ -15,13 +15,40 @@ public class M4A1 : GunClass {
     }
 
     public override void Shooting() {
-        print("Shot with M4A1");
+        if (Input.GetButton("Fire1") && curAmmo > 0) {
+            StartCoroutine(WaitForShooting(fireRate));
+        } else {
+            if (Input.GetButtonUp("Fire1")) {
+                StopCoroutine(WaitForShooting(fireRate));
+            }
+        }
+        AmmoText();
+    }
+    IEnumerator WaitForShooting(float waitTime) {
+        Rigidbody bulletShot = bullet.GetComponent<Rigidbody>();
+        Rigidbody newBulletShot = Instantiate(bulletShot, weaponHold.weaponLoc.transform.position, weaponHold.weaponLoc.transform.rotation) as Rigidbody;
+        newBulletShot.velocity = transform.TransformDirection(new Vector3(transform.position.x, transform.position.y, bulletSpeed));
+        curAmmo--;
+        yield return new WaitForSeconds(waitTime);
+        Shooting();
     }
 
     public override void Reload() {
-        print("reloaded M4A1");
+        if (curAmmo < maxAmmo && leftoverAmmo > 0) {
+            ammoToReload = maxAmmo - curAmmo;
+            if (ammoToReload <= leftoverAmmo) {
+                leftoverAmmo -= ammoToReload;
+                curAmmo += ammoToReload;
+            } else {
+                curAmmo += leftoverAmmo;
+                leftoverAmmo = 0;
+
+            }
+            ammoToReload = 0;
+        }
+        AmmoText();
     }
     public override void AmmoText() {
-        ammoText.text = "M4A1 ammo:" + curAmmo.ToString() + "/" + maxAmmo.ToString();
+        ammoText.text = "M4A1 ammo:" + curAmmo.ToString() + "/" + leftoverAmmo.ToString();
     }
 }
