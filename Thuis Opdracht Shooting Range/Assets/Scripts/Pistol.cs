@@ -19,7 +19,7 @@ public class Pistol : GunClass {
         if (Input.GetButtonDown("Fire1") && curAmmo > 0) {
             curAmmo--;
             Rigidbody newBulletShot = Instantiate(bulletShot, weaponHold.weaponLoc.transform.position, weaponHold.weaponLoc.transform.rotation) as Rigidbody;
-            newBulletShot.velocity = transform.TransformDirection(new Vector3(transform.position.x, transform.position.y, bulletSpeed));
+            newBulletShot.GetComponent<Bullet>().BulletSpeed(newBulletShot);
         }
         AmmoText();
     }

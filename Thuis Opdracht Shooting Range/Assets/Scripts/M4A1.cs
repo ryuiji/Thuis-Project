@@ -27,7 +27,7 @@ public class M4A1 : GunClass {
     IEnumerator WaitForShooting(float waitTime) {
         Rigidbody bulletShot = bullet.GetComponent<Rigidbody>();
         Rigidbody newBulletShot = Instantiate(bulletShot, weaponHold.weaponLoc.transform.position, weaponHold.weaponLoc.transform.rotation) as Rigidbody;
-        newBulletShot.velocity = transform.TransformDirection(new Vector3(transform.position.x, transform.position.y, bulletSpeed));
+        newBulletShot.GetComponent<Bullet>().BulletSpeed(newBulletShot);
         curAmmo--;
         yield return new WaitForSeconds(waitTime);
         Shooting();

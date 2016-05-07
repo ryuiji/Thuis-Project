@@ -6,7 +6,6 @@ public class WeaponHold : MonoBehaviour {
 
 
     public List<GameObject> weapons = new List<GameObject>();
-    public GameObject playerCam;
     public GameObject weaponLoc;
     public delegate void Shoot();
     public Shoot shoot;
@@ -47,7 +46,7 @@ public class WeaponHold : MonoBehaviour {
         }
     }
     void FixPosition(int weapon) {
-        weapons[weapon].transform.SetParent(playerCam.transform);
+        weapons[weapon].transform.SetParent(weaponLoc.transform);
         weapons[weapon].transform.position = weaponLoc.transform.position;
         weapons[weapon].transform.rotation = weaponLoc.transform.rotation;
         weapons[weapon].SetActive(true);

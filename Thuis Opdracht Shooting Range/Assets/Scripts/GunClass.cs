@@ -11,7 +11,7 @@ public abstract class GunClass : MonoBehaviour {
     public float leftoverAmmo;
     public float ammoToReload;
     public GameObject bullet;
-    public float bulletSpeed;
+    //public float bulletSpeed;
     public WeaponHold weaponHold;
     public Text ammoText;
 
