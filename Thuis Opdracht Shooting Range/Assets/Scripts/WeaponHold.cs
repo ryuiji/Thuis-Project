@@ -7,6 +7,7 @@ public class WeaponHold : MonoBehaviour {
 
     public List<GameObject> weapons = new List<GameObject>();
     public GameObject weaponLoc;
+    public GameObject shootLoc;
     public delegate void Shoot();
     public Shoot shoot;
     public delegate void Reload();

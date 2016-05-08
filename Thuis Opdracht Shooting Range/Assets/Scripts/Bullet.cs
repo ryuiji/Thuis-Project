@@ -16,13 +16,15 @@ public class Bullet : MonoBehaviour {
         shot.velocity = transform.TransformDirection(new Vector3(transform.position.x, transform.position.y, bulletSpeed));
     }
     public void OnCollisionEnter(Collision shot) {
+        if (shot.gameObject.tag == "Target") {
+            player.GetComponent<Points>().AddPoints();
+            Destroy(shot.gameObject);
+        }
         ContactPoint contact = shot.contacts[0];
         Vector3 bulletPos = contact.point;
         Quaternion rot = Quaternion.FromToRotation(Vector3.forward, contact.normal);
         GameObject hole = Instantiate(holeImage, bulletPos, rot) as GameObject;
-        if(shot.gameObject.name == "Target") {
-            player.GetComponent<Points>().AddPoints();
-        }
+
         Destroy(gameObject);
         Destroy(hole, 3);
     }
