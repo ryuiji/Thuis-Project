@@ -28,6 +28,7 @@ public class AK : GunClass {
         Rigidbody bulletShot = bullet.GetComponent<Rigidbody>();
         Rigidbody newBulletShot = Instantiate(bulletShot, weaponHold.shootLoc.transform.position, weaponHold.shootLoc.transform.rotation) as Rigidbody;
         newBulletShot.GetComponent<Bullet>().BulletSpeed(newBulletShot);
+        newBulletShot.GetComponent<Bullet>().BulletHit(newBulletShot);
         curAmmo--;
         yield return new WaitForSeconds(waitTime);
         Shooting();

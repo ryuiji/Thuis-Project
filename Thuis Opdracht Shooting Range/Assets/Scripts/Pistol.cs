@@ -20,7 +20,8 @@ public class Pistol : GunClass {
             curAmmo--;
             Rigidbody newBulletShot = Instantiate(bulletShot, weaponHold.shootLoc.transform.position, weaponHold.shootLoc.transform.rotation) as Rigidbody;
             newBulletShot.GetComponent<Bullet>().BulletSpeed(newBulletShot);
-        }
+            newBulletShot.GetComponent<Bullet>().BulletHit(newBulletShot);
+            }
         AmmoText();
     }
 
